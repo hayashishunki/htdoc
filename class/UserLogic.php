@@ -1,10 +1,8 @@
 <?php       //ユーザーを情報を登録
 require_once '../dbconect.php';
 
-
 class UserLogic
 {
-
     //ユーザーを登録する
     public static function createUser($userDate)
     {
@@ -78,16 +76,18 @@ class UserLogic
     }
 
     //ログインチェック
-    public static function checkLogin() {
+    public static function checkLogin()
+    {
 
-    //セッションにログインユーザーが入っていなければもしくはid存在しているか
-    if(!isset($_SESSION['login_user']) || $_SESSION['login_user']['id'] === 0) {
+        //セッションにログインユーザーが入っていなければもしくはid存在しているか
+        if (!isset($_SESSION['login_user']) || $_SESSION['login_user']['id'] === 0) {
             return false;
-    }
-    return true;
+        }
+        return true;
     }
 
-    public static function logout() {
+    public static function logout()
+    {
 
         $_SESSION = array();
         session_destroy();
