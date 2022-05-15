@@ -34,7 +34,7 @@ session_destroy(); //sessionファイルが消える
         <!-- issetは値があるかどうか調べる -->
         <p><?php echo $err['msg']; ?></p>
     <?php endif; ?>
-    <form action="login.php" method="POST">
+    <form action="login.php" method="POST" autocomplete="off">
         <p>
             <label for="email">メールアドレス:</label>
             <input type="email" name="email">

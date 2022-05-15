@@ -67,7 +67,7 @@ if (count($err) === 0) {
     <?php else : ?>
         <p>ユーザー登録完了しました！</p>
     <?php endif ?>
-    <a href="./signUp.php">戻る</a>
+    <a href="./signup_form.php">戻る</a>
 </body>
 
 </html>

@@ -31,7 +31,7 @@ unset($_SESSION['login_err']);//issetで確認して入っていたら実行、�
         <!-- issetは値があるかどうか調べる -->
         <p><?php echo $login_err; ?></p>
     <?php endif; ?>
-    <form action="register.php" method="POST">
+    <form action="register.php" method="POST" autocomplete="off">
         <p>
             <label for="username">ユーザー名:</label>
             <input type="text" name="username">
