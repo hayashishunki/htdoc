@@ -1,10 +1,8 @@
 <?php       //ユーザーを情報を登録
 require_once '../dbconect.php';
 
-
 class UserLogic
 {
-
     //ユーザーを登録する
     public static function createUser($userDate)
     {
@@ -31,7 +29,6 @@ class UserLogic
 
     public static function login($email, $password)
     {
-
         //結果初期値falseにすることでtrueにしないとログインできないようにする(初期値に設定しとけば比較が楽になる　true or false)
         $result = false;
         //ユーザーをemailから検索する
@@ -79,16 +76,16 @@ class UserLogic
 
     //ログインチェック
     public static function checkLogin() {
+        //セッションにログインユーザーが入っていなければもしくはid存在しているか
+        if(!isset($_SESSION['login_user']) || $_SESSION['login_user']['id'] === 0) {
+                return false;
+        }
 
-    //セッションにログインユーザーが入っていなければもしくはid存在しているか
-    if(!isset($_SESSION['login_user']) || $_SESSION['login_user']['id'] === 0) {
-            return false;
+        return true;
     }
-    return true;
-    }
 
-    public static function logout() {
-
+    public static function logout() 
+    {
         $_SESSION = array();
         session_destroy();
     }

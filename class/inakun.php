@@ -1,9 +1,7 @@
 <?php       //ユーザーを情報を登録
 require_once '../dbconect.php';
 
-
 class UserLogic {
-
     //ユーザーを登録する
     public function createUser($userDate) {
         $result = false;
@@ -28,9 +26,6 @@ class UserLogic {
             echo $e;
 
         }
-        
-
-
     }
 }
 ?>
