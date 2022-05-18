@@ -9,3 +9,4 @@ foreach($posts as $key => $value) {
 }
 ?>
 main3
+main2
