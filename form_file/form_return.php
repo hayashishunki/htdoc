@@ -8,6 +8,7 @@ if(!isset($_SESSION['csrf_token']) || $token !== $_SESSION['csrf_token']) {
     exit('不正なリクエストです。');
 }
 unset($_SESSION['csrf_token']);//残す必要ないためメモリ解放とセキュリティ面でも消す
+$posts = $_POST;
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -18,6 +19,13 @@ unset($_SESSION['csrf_token']);//残す必要ないためメモリ解放とセ�
     <title>お問合せ確認</title>
 </head>
 <body>
-    
+    <form action="form_end.php">
+        <h1><?php foreach($posts as $key => $value): ?></h1>
+            <p><?php echo $key.' : '.$value; ?></p>
+            <p>この内容でよろしいですか？</p>
+            <?php endforeach; ?>
+            <P><a href="form.php"></a>修正する</P>
+            <button type="submit">これで送信</button>
+    </form>
 </body>
 </html>
