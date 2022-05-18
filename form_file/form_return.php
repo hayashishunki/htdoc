@@ -8,3 +8,4 @@ foreach($posts as $key => $value) {
     echo '<br>';
 }
 ?>
+main3
