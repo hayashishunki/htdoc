@@ -43,7 +43,6 @@ if (count($err) === 0) {
 
     if (!$hasCreated) {
         $err[] = '登録に失敗しました。';
-        var_dump($err);
     }
 }
 
@@ -67,7 +66,6 @@ if (count($err) === 0) {
     <?php else : ?>
         <p>ユーザー登録完了しました！</p>
     <?php endif ?>
-    <a href="./signUp.php">戻る</a>
+    <a href="mypage.php">マイページへ</a>
 </body>
-
 </html>

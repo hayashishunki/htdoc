@@ -22,5 +22,6 @@ require_once '../function.php'
         <input type="hidden" name="csrf_token" value="<?php echo h(setToken()); ?>">
         <input type="submit" value="確認">
     </form>
+    <a href="../public/mypage.php">マイページへ</a>
 </body>
 </html>
