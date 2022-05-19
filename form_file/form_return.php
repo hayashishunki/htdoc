@@ -29,7 +29,7 @@ if(empty($_POST['contact'])) {
 //     exit('お問合せ内容は200文字以内にしてください。');
 // }
 
-//XSS対策(送られてきたデータを置き換える)
+//XSS対策(送られてきたデータを置き換える)htmlに出力させるときにエスケープさせる。サーバーの中ではしなくても大丈夫。
 $email = htmlspecialchars($_POST['email'], ENT_QUOTES);
 $contact = htmlspecialchars($_POST['contact'], ENT_QUOTES);
 
