@@ -8,7 +8,31 @@ if(!isset($_SESSION['csrf_token']) || $token !== $_SESSION['csrf_token']) {
     exit('不正なリクエストです。');
 }
 unset($_SESSION['csrf_token']);//残す必要ないためメモリ解放とセキュリティ面でも消す
-$posts = $_POST;
+
+//もし文字入力が100文字以上の場合のエラー表示とここで止まる。
+if(mb_strlen($_POST['email']) > 100) {
+    exit('メールアドレスの入力は100文字以内にしてください。');
+} 
+if(empty($_POST['email'])) {
+    exit('メールアドレスを入力してください。');
+}
+
+if(mb_strlen($_POST['contact']) > 200) {
+    exit('お問合せ内容は200文字までにしてください。');
+}
+if(empty($_POST['contact'])) {
+    exit('お問合せ内容を入力してください。');
+}
+
+
+// if(mb_strlen($_POST['contact'] > 200)) {
+//     exit('お問合せ内容は200文字以内にしてください。');
+// }
+
+//XSS対策(送られてきたデータを置き換える)
+$email = htmlspecialchars($_POST['email'], ENT_QUOTES);
+$contact = htmlspecialchars($_POST['contact'], ENT_QUOTES);
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -19,13 +43,18 @@ $posts = $_POST;
     <title>お問合せ確認</title>
 </head>
 <body>
-    <form action="form_end.php">
-        <h1><?php foreach($posts as $key => $value): ?></h1>
-            <p><?php echo $key.' : '.$value; ?></p>
-            <p>この内容でよろしいですか？</p>
-            <?php endforeach; ?>
-            <P><a href="form.php"></a>修正する</P>
-            <button type="submit">これで送信</button>
+    <h1>確認画面</h1>
+    <form action="form_end.php" method="POST">
+    <p>email:</p>
+    <input type="text" name="email"value="<?php echo $email; ?>">
+    <p>お問合せ内容:</p>
+    <input type="text" name="contact" value="<?php echo $contact; ?>">
+
+    <!-- 入力画面から受け取ったデータを格納 -->
+    <input type="hidden" name="email" value="<?php echo $email; ?>">
+    <input type="hidden" name="contact" value="<?php echo $contact; ?>">
+    <button type="submit" value="送信">OK!送信します。</button>
     </form>
 </body>
 </html>
+

@@ -18,9 +18,9 @@ require_once '../function.php'
         <p>email</p>
         <p><input type="text" name="email"></p>
         <p>お問い合わせ内容</p>
-        <p><textarea name="form"></textarea></p>
+        <p><textarea name="contact"></textarea></p>
         <input type="hidden" name="csrf_token" value="<?php echo h(setToken()); ?>">
-        <input type="submit" value="送信">
+        <input type="submit" value="確認">
     </form>
 </body>
 </html>

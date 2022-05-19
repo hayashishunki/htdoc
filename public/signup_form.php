@@ -53,6 +53,7 @@ unset($_SESSION['login_err']);//issetで確認して入っていたら実行、�
 
     </form>
     <a href="login_form.php">ログインはこちら</a>
+    <a href="../form_file/form.php">お問い合わせ</a>
 </body>
 
 </html>
