@@ -34,6 +34,7 @@ $login_user = $_SESSION['login_user']; //ログインしているユーザーを
     <form action="logout.php" method="POST">
         <input type="submit" name="logout" value="ログアウト">
     </form>
+    <a href="../form_file/form.php">お問い合わせ</a>
 </body>
 
 </html>

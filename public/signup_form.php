@@ -42,7 +42,7 @@ unset($_SESSION['login_err']);//issetで確認して入っていたら実行、�
         </p>
         <p>
             <label for="password">パスワード:</label>
-            <input type="text" name="password">
+            <input type="password" name="password">
         </p>
         <p>
             <label for="password_conf">パスワード確認:</label>
@@ -53,6 +53,7 @@ unset($_SESSION['login_err']);//issetで確認して入っていたら実行、�
 
     </form>
     <a href="login_form.php">ログインはこちら</a>
+    <a href="../form_file/form.php">お問い合わせ</a>
 </body>
 
 </html>

@@ -55,5 +55,4 @@ session_destroy(); //sessionファイルが消える
     </form>
     <a href="signup_form.php">新規登録はこちらから</a>
 </body>
-
 </html>
