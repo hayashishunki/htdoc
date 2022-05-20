@@ -27,7 +27,7 @@ if (!$email = filter_input(INPUT_POST, 'email')) {
 }
 
 $password = filter_input(INPUT_POST, 'password');
-//正規表現・・・短く略すこと
+//正規表現・・・パターンにマッチしたものを返す。
 if (!preg_match("/\A[a-z\d]{8,100}+\z/i", $password)) {
     $err[] = 'パスワードは英数字8文字以上100文字以下にしてください';
 }

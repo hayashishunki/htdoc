@@ -4,7 +4,7 @@ $contact = $_POST['contact'];
 
 $headers = [
     'MIME-Version' => '1.0',//電子メールであることを示す
-    'Content-Transfer-Encoding' => '7bit',//基本初期値は7bit,メールを暗号化する
+    'Content-Transfer-Encoding' => 'base64',//基本初期値はbase64,メールを暗号化する
     'Content-Type' => 'text/plain; charset=UTF-8',//メールタイプ文字種類指定
     'Return-Path' => 'hayashinoshun@gmail.com',//メールが届かなかった場合に、そのメールが送り返される返信先のメールアドレス
     'From' => $email,//誰から送られたか	入力されたmail
@@ -20,10 +20,8 @@ $headers = [
 $mail_form  = "メールアドレス:".$email."\r\n".
             "お問い合わせ内容:".$contact."\r\n";
 
-        mb_language("Ja");
-        mb_internal_encoding("UTF-8");
-        mb_encode_mimeheader("UTF-8");
-        mail("hayashinoshun@gmail.com", "お問合せ", $mail_form, $headers);
+        mb_language("ja");
+        mb_send_mail("hayashinoshun@gmail.com", "お問合せ", $mail_form, $headers);
         var_dump($mail_form);
 ?>
 

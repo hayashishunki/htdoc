@@ -9,11 +9,14 @@ if(!isset($_SESSION['csrf_token']) || $token !== $_SESSION['csrf_token']) {
 }
 unset($_SESSION['csrf_token']);//残す必要ないためメモリ解放とセキュリティ面でも消す
 
+//メールアドレス型かどうか検証(FILTER_VALIDATE_EMAIL)
+$email_fil = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+//検証用var_dump($email_fil);
 //もし文字入力が100文字以上の場合のエラー表示とここで止まる。
-if(mb_strlen($_POST['email']) > 100) {
+if(mb_strlen($email_fil) > 100) {
     exit('メールアドレスの入力は100文字以内にしてください。');
 } 
-if(empty($_POST['email'])) {
+if(empty($email_fil)) {
     exit('メールアドレスを入力してください。');
 }
 
