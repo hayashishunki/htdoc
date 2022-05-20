@@ -2,13 +2,6 @@
 $email = $_POST['email'];
 $contact = $_POST['contact'];
 
-//メール送信本文作成/"/r/n"は改行
-$mail_form  = 'メールアドレス:'.$email."\r\n".
-            'お問合せ内容:'.$contact."\r\n";
-
-mb_language("Japanese");
-mb_internal_encoding("UTF-8");
-
 $headers = [
     'MIME-Version' => '1.0',//電子メールであることを示す
     'Content-Transfer-Encoding' => '7bit',//基本初期値は7bit,メールを暗号化する
@@ -23,8 +16,15 @@ $headers = [
     'X-Priority' => '3',
     ];
 
-        $result = mb_send_mail('hayashinoshun@gmail.com', 'お問合せ', $mail_form, $headers);
-        var_dump($result);
+    //メール送信本文作成/"/r/n"は改行
+$mail_form  = "メールアドレス:".$email."\r\n".
+            "お問い合わせ内容:".$contact."\r\n";
+
+        mb_language("Ja");
+        mb_internal_encoding("UTF-8");
+        mb_encode_mimeheader("UTF-8");
+        mail("hayashinoshun@gmail.com", "お問合せ", $mail_form, $headers);
+        var_dump($mail_form);
 ?>
 
 <!DOCTYPE html>
@@ -39,6 +39,6 @@ $headers = [
     <h1>送信完了!</h1>
     <p>お問合せありがとうございます！</p>
     <p>送信完了しました。</p>
-    <a href="../public/mypage.php"></a>
+    <a href="../public/mypage.php">マイページへ</a>
 </body>
 </html>
