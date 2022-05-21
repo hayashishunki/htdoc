@@ -35,6 +35,7 @@ $login_user = $_SESSION['login_user']; //ログインしているユーザーを
         <input type="submit" name="logout" value="ログアウト">
     </form>
     <a href="../form_file/form.php">お問い合わせ</a>
+    <a href="../Bulletin board/index.php">投稿</a>
 </body>
 
 </html>
