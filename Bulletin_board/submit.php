@@ -16,6 +16,7 @@ if (!preg_match("/\A[a-z\d]{1,100}+\z/i", $view_name, $message)) {
     $err[] = '入力内容は100文字以下にしてください';
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
