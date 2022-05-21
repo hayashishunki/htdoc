@@ -1,15 +1,36 @@
 <?php
-session_start();
-require_once 'index.php';
 
-if(!empty('view_name')) {
-    echo '題名を入力してください。';
+$view_name = filter_input(INPUT_POST, 'view_name');
+$message = filter_input(INPUT_POST, 'message');
+
+$err = [];
+if(empty($view_name)) {
+    $err[] = 'ユーザーネームを入力してください。';
 }
-if(!empty('message')) {
-    echo 'メッセージを入力してください。';
+
+if(empty($message)) {
+    $err[] = 'メッセージを入力してください。';
 }
-var_dump($_POST);
 
-
-
+if (!preg_match("/\A[a-z\d]{1,100}+\z/i", $view_name, $message)) {
+    $err[] = '入力内容は100文字以下にしてください';
+}
 ?>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>投稿完了画面</title>
+</head>
+<body>
+    <?php if(count($err) > 0): ?>
+    <?php foreach($err as $e): ?>
+    <?php echo $e; ?>
+    <?php endforeach; ?>
+    <?php else: ?>
+    <p>投稿完了</p>
+    <?php endif; ?>
+</body>
+</html>

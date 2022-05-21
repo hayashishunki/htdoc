@@ -245,17 +245,17 @@ article.reply::before {
 </head>
 <body>
 <h1>ひと言掲示板</h1>
-<!-- ここにメッセージの入力フォームを設置 -->
-<form method="post">
+<!-- メッセージの入力フォームを作成 -->
+<form method="post" action="submit.php">
     <div>
-        <label for="view_name">表示名</label>
-        <input type="text" id="view_name" name="view_name" value="">
+        <label for='view_name'>ユーザー名</label>
+        <input type="text" id='view_name' name='view_name' value="">
     </div>
     <div>
-        <label for="message">ひと言メッセージ</label>
-        <textarea name="message" id="message"></textarea>
+        <label for='message'>ひと言メッセージ</label>
+        <textarea name='message' id='message'></textarea>
     </div>
-    <input type="submit" name="btn_submit" value="書き込む">
+    <input type='submit' name='btn_submit' value="書き込む">
 </form>
 <hr>
 <section>

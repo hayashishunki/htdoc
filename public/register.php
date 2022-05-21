@@ -58,7 +58,7 @@ if (count($err) === 0) {
 </head>
 
 <body>
-    <!--エラーがあればエラーを全部出してくれるなければ完了-->
+    <!--エラーがあればエラーを全部出してくれなければ完了-->
     <?php if (count($err) > 0) : ?>
         <?php foreach ($err as $e) : ?>
             <p><?php echo $e ?></p>
