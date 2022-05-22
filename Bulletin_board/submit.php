@@ -1,10 +1,10 @@
 <?php
 
-$view_name = filter_input(INPUT_POST, 'view_name');
+$viewName = filter_input(INPUT_POST, 'view_name');
 $message = filter_input(INPUT_POST, 'message');
 
 $err = [];
-if(empty($view_name)) {
+if(empty($viewName)) {
     $err[] = 'ユーザーネームを入力してください。';
 }
 
@@ -12,7 +12,7 @@ if(empty($message)) {
     $err[] = 'メッセージを入力してください。';
 }
 
-if (!preg_match("/\A[a-z\d]{1,100}+\z/i", $view_name, $message)) {
+if (!preg_match("/\A[a-z\d]{1,100}+\z/i", $viewName, $message)) {
     $err[] = '入力内容は100文字以下にしてください';
 }
 
