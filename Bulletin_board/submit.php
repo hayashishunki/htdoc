@@ -1,7 +1,12 @@
 <?php
-
+require_once '../function.php';
+session_start();
 $viewName = filter_input(INPUT_POST, 'view_name');
 $message = filter_input(INPUT_POST, 'message');
+
+// $_SESSION['view_name'] = $_POST['view_name'];
+// $_SESSION['message'] = $_POST['message'];
+
 
 $err = [];
 if(empty($viewName)) {
@@ -12,10 +17,17 @@ if(empty($message)) {
     $err[] = 'メッセージを入力してください。';
 }
 
-if (!preg_match("/\A[a-z\d]{1,100}+\z/i", $viewName, $message)) {
+if (!preg_match("/\A[a-z\d]{1,50}+\z/i", $viewName)) {
+    $err[] = 'ユーザーネームは50文字以下にしてください';
+}
+if (!preg_match("/\A[a-z\d]{1,100}+\z/i", $message)) {
     $err[] = '入力内容は100文字以下にしてください';
 }
-
+// $_SESSION['err'] = $err;
+// if(count($_SESSION['err']) > 0) {
+//     header('Location: index.php');
+//     return;
+// }
 ?>
 
 <!DOCTYPE html>
@@ -28,11 +40,11 @@ if (!preg_match("/\A[a-z\d]{1,100}+\z/i", $viewName, $message)) {
 </head>
 <body>
     <?php if(count($err) > 0): ?>
-    <?php foreach($err as $e): ?>
-    <?php echo $e; ?>
-    <?php endforeach; ?>
+        <?php foreach($err as $e): ?>
+            <?=  h($e); ?>
+        <?php endforeach; ?>
     <?php else: ?>
-    <p>投稿完了</p>
+        <p>投稿完了</p>
     <?php endif; ?>
 </body>
 </html>
