@@ -1,50 +1,18 @@
 <?php
-require_once '../function.php';
+//前のセッションを受け継ぐ
 session_start();
-$viewName = filter_input(INPUT_POST, 'view_name');
-$message = filter_input(INPUT_POST, 'message');
-
-// $_SESSION['view_name'] = $_POST['view_name'];
-// $_SESSION['message'] = $_POST['message'];
-
 
 $err = [];
-if(empty($viewName)) {
-    $err[] = 'ユーザーネームを入力してください。';
-}
 
-if(empty($message)) {
-    $err[] = 'メッセージを入力してください。';
+if(!$viewName = filter_input(INPUT_POST, 'view_name')) {
+    $err['view_name'] = 'ユーザーネームを入力してください。';
 }
-
-if (!preg_match("/\A[a-z\d]{1,50}+\z/i", $viewName)) {
-    $err[] = 'ユーザーネームは50文字以下にしてください';
+if(!$message = filter_input(INPUT_POST, 'message')) {
+    $err['message'] = '投稿内容を入力してください。';
 }
-if (!preg_match("/\A[a-z\d]{1,100}+\z/i", $message)) {
-    $err[] = '入力内容は100文字以下にしてください';
+if(count($err) > 0) {
+    $_SESSION = $err;
+    header("Location: index.php");
+    return;
 }
-// $_SESSION['err'] = $err;
-// if(count($_SESSION['err']) > 0) {
-//     header('Location: index.php');
-//     return;
-// }
 ?>
-
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>投稿完了画面</title>
-</head>
-<body>
-    <?php if(count($err) > 0): ?>
-        <?php foreach($err as $e): ?>
-            <?=  h($e); ?>
-        <?php endforeach; ?>
-    <?php else: ?>
-        <p>投稿完了</p>
-    <?php endif; ?>
-</body>
-</html>

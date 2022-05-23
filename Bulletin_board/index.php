@@ -1,5 +1,10 @@
 <?php
 session_start();
+
+$err = $_SESSION;
+
+$_SESSION = array();
+session_destroy();
 ?>
 
 <!DOCTYPE html>
