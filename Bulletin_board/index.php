@@ -1,10 +1,11 @@
 <?php
+require_once '../function.php';
+
 session_start();
 
 $err = $_SESSION;
 
-$_SESSION = array();
-session_destroy();
+unset($_SESSION['view_name'], $_SESSION['message']);
 ?>
 
 <!DOCTYPE html>
@@ -24,11 +25,20 @@ session_destroy();
         <div>
             <label for='view_name'>ユーザー名</label>
             <input type="text" id='view_name' name='view_name' value="">
+            <?php if(isset($err['view_name'])): ?>
+                <p><?php echo $err['view_name']; ?></p>
+                <?php endif; ?>
         </div>
         <div>
+            <br>
             <label for='message'>ひと言メッセージ</label>
             <textarea name='message' id='message'></textarea>
+            <?php if(isset($err['message'])): ?>
+            <p><?php echo $err['message']; ?></p>
+            <?php endif; ?>
         </div>
+        <br>
+        <input type="hidden" name="csrf_token" value="<?php echo h(setToken()); ?>">
         <input type='submit' name='btn_submit' value="書き込む">
     </form>
     <hr>
