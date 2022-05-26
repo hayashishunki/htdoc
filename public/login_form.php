@@ -32,7 +32,7 @@ session_destroy(); //sessionファイルが消える
     <h1>ログインフォーム</h1>
     <?php if (isset($err['msg'])) : ?>
         <!-- issetは値があるかどうか調べる -->
-        <p><?php echo $err['msg']; ?></p>
+        <p><?= $err['msg']; ?></p>
     <?php endif; ?>
     <form action="login.php" method="POST">
         <p>
@@ -40,7 +40,7 @@ session_destroy(); //sessionファイルが消える
             <input type="email" name="email">
             <?php if (isset($err['email'])) : ?>
                 <!-- issetは値があるかどうか調べる -->
-        <p><?php echo $err['email']; ?></p>
+        <p><?= $err['email']; ?></p>
     <?php endif; ?>
     </p>
     <p>
@@ -48,7 +48,7 @@ session_destroy(); //sessionファイルが消える
         <input type="password" name="password">
         <?php if (isset($err['password'])) : ?>
             <!-- issetは値があるかどうか調べる -->
-    <p><?php echo $err['password']; ?></p>
+    <p><?= $err['password']; ?></p>
 <?php endif; ?>
 </p>
 <p><input type="submit" value="ログイン"></p>

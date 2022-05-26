@@ -1,7 +1,7 @@
 <?php
-require_once '../function.php';
-//前のセッションを受け継ぐ
+//前のセッションを受け継ぐ（昨日起きていたセッションの不具合治すために、先頭にsession_satrt()を移動させてみました。）
 session_start();
+require_once '../function.php';
 
 //送られてきたトークンとsessionの中のトークンが一致しない、またはsessionトークンが入っていなければエラー
 $token = filter_input(INPUT_POST, 'csrf_token');
@@ -11,14 +11,11 @@ if (!isset($_SESSION['csrf_token']) || $_SESSION['csrf_token'] !== $_POST['csrf_
 unset($_SESSION['csrf_token']);
 
 $err = [];
-if (!$viewName = filter_input(INPUT_POST, 'view_name')) {
-    $err['view_name'] = 'ユーザーネームを入力してください。';
-}
 if (!$message = filter_input(INPUT_POST, 'message')) {
     $err['message'] = '投稿内容を入力してください。';
 }
 if (count($err) > 0) {
-    $_SESSION = $err;
+    $_SESSION['err'] = $err;
     header("Location: index.php");
     return;
 }
@@ -34,9 +31,10 @@ if (count($err) > 0) {
 </head>
 
 <body>
-    <h2>投稿者：<?php echo h($_POST['view_name']) ?></h2>
+    <h2>投稿者：<?= $_SESSION['login_user']['name']; ?></h2>
     <br>
-    <h3>投稿内容：<?php echo h($_POST['message']) ?></h3>
+    <h3>投稿内容：<?= h($_POST['message']) ?></h3>
+    <a href="../public/mypage.php">マイページへ</a>
 </body>
 
 </html>

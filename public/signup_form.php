@@ -29,7 +29,7 @@ unset($_SESSION['login_err']);//issetで確認して入っていたら実行、�
     <h1>ユーザー登録フォーム</h1>
     <?php if (isset($login_err)) : ?>
         <!-- issetは値があるかどうか調べる -->
-        <p><?php echo $login_err; ?></p>
+        <p><?= $login_err; ?></p>
     <?php endif; ?>
     <form action="register.php" method="POST">
         <p>
@@ -48,7 +48,7 @@ unset($_SESSION['login_err']);//issetで確認して入っていたら実行、�
             <label for="password_conf">パスワード確認:</label>
             <input type="password" name="password_conf">
         </p>
-        <input type="hidden" name="csrf_token" value="<?php echo h(setToken()); ?>">
+        <input type="hidden" name="csrf_token" value="<?= h(setToken()); ?>">
         <p><input type="submit" value="登録！"></p>
 
     </form>
