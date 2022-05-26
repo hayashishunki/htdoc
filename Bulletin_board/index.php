@@ -34,7 +34,7 @@ if (!empty($_POST['btn_submit'])) {
         $current_date = date("Y-m-d H:i:s");
 
         //書き込むデータを作成
-        $date = "'" . $_POST['view_name'] . "','" . $_POST['message'] . "','" . $current_date . "'\n";
+        $date = "'" . $_POST['message'] . "','" . $current_date . "'\n";
 
         //書き込み
         fwrite($file_handler, $date);
@@ -50,11 +50,7 @@ if ($file_handler = fopen(FAILNAME, 'r')) {
         //preg_split関数は文字列を特定の文字で分割する関数
         $split_date = preg_split('/\'/', $date);
 
-        $message = array(
-            'view_name' => $split_date[1],
-            'message' => $split_date[3],
-            'post_date' => $split_date[5]
-        );
+        $message = array('message' => $split_date[1]);
         //$message_arrayに$messageごと格納,この操作を投稿されたメッセージの数だけ繰り返すと、$message_arrayに全てのメッセージのデータが入る
         array_unshift($message_array, $message);
     }
@@ -64,15 +60,15 @@ if ($file_handler = fopen(FAILNAME, 'r')) {
     fclose($file_handler);
 }
 
-//ファイルからデータを取得する
-if ($file_handler = fopen(FAILNAME, 'r')) {
-    //ファイルからデータを一行ずつ取得
-    while ($date = fgets($file_handler)) {
-        echo $date . "<br>";
-    }
-    //ファイルを閉じる
-    fclose($file_handler);
-}
+// //ファイルからデータを取得する
+// if ($file_handler = fopen(FAILNAME, 'r')) {
+//     //ファイルからデータを一行ずつ取得
+//     while ($date = fgets($file_handler)) {
+//         echo $date . "<br>";
+//     }
+//     //ファイルを閉じる
+//     fclose($file_handler);
+// }
 ?>
 
 <!DOCTYPE html>
@@ -88,7 +84,7 @@ if ($file_handler = fopen(FAILNAME, 'r')) {
 <body>
     <h1>ひと言掲示板</h1>
     <!-- メッセージの入力フォームを作成 -->
-    <form method="post" action="submit.php">
+    <form method="post" >
         <h2>ユーザーネーム：<?= h($_SESSION['login_user']['name']); ?></h2>
         <div>
             <br>
@@ -103,16 +99,24 @@ if ($file_handler = fopen(FAILNAME, 'r')) {
         <input type="hidden" name="csrf_token" value="<?php echo h(setToken()); ?>">
         <input type='submit' name='btn_submit' value="書き込む">
     </form>
+    <br>
+    <a href="../public/mypage.php">マイページへ</a>
     <hr>
     <section>
         <!-- ここに投稿されたメッセージを表示 -->
+        <!-- foreach文で$message_arrayからメッセージ1件分のデータを取り出し、$valueに入れた -->
         <?php if(!empty($message_array)): ?>
             <?php foreach($message_array as $value): ?>
         <article>
-            
+            <div class="info">
+                <h2><?php echo h($_SESSION['login_user']['name']) ?></h2>
+                <time><?php echo date('Y年m月d日 H:i', strtotime($value['post_date'])); ?></time>
+            </div>
+            <p><?php echo $value['message']; ?></p>
         </article>
+        <?php endforeach; ?>
+        <?php endif; ?>
     </section>
-    <a href="../public/mypage.php">マイページへ</a>
 </body>
 
 </html>
