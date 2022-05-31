@@ -19,25 +19,25 @@ if (isset($_SESSION['err'])) {
 //リロードされた場合セッションをリセット
 unset($_SESSION['err']);
 
-//message.txtのデータが読み込まれる
-if ($file_handler = fopen(FAILNAME, 'r')) {
-    //whileを使うと書き込みを
-    //fgets関数を1度実行して1行読み込むと、このファイルポインターリソースの位置も都度更新されていく、ファイルが終わるまで1行ずつデータを読み込む
-    while ($date = fgets($file_handler)) {
+// //message.txtのデータが読み込まれる
+// if ($file_handler = fopen(FAILNAME, 'r')) {
+//     //whileを使うと書き込みを
+//     //fgets関数を1度実行して1行読み込むと、このファイルポインターリソースの位置も都度更新されていく、ファイルが終わるまで1行ずつデータを読み込む
+//     while ($date = fgets($file_handler)) {
         
-        //preg_split関数は文字列を特定の文字で分割する関数
-        $split_date = preg_split('/\'/', $date);
-        //messageに配列で入れている。
-        $message = array('message' => $split_date[1],
-                        'post_date' => $split_date[3]
-    );
-        //$message_arrayに$messageごと格納。unshiftで先頭に表示
-        array_unshift($message_array, $message);
-    }
+//         //preg_split関数は文字列を特定の文字で分割する関数
+//         $split_date = preg_split('/\'/', $date);
+//         //messageに配列で入れている。
+//         $message = array('message' => $split_date[1],
+//                         'post_date' => $split_date[3]
+//     );
+//         //$message_arrayに$messageごと格納。unshiftで先頭に表示
+//         array_unshift($message_array, $message);
+//     }
 
-    //ファイルを閉じる
-    fclose($file_handler);
-}
+//     //ファイルを閉じる
+//     fclose($file_handler);
+// }
 ?>
 
 <!DOCTYPE html>

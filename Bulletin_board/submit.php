@@ -1,6 +1,7 @@
 <?php
 //前のセッションを受け継ぐ（昨日起きていたセッションの不具合治すために、先頭にsession_satrt()を移動させてみました。）
 session_start();
+require_once '../Bulletin_board/const/dbconect.php';
 require_once './const/file.php';
 require_once '../function.php';
 
@@ -15,7 +16,7 @@ $err = [];
 if (empty($message)) {
     $err['message'] = '投稿内容を入力してください。';
 }
-if(mb_strlen($message) > 10) {
+if(mb_strlen($message) > 100) {
     $err['message'] = '入力は10文字以内にしてください。';
 }
 
@@ -37,24 +38,25 @@ $split_date = null;
 $message = array();
 $message_array = array();
 
-//ファイルにアクセス
-if (!empty($_POST['btn_submit'])) {
+// //ファイルにアクセス
+// if (!empty($_POST['btn_submit'])) {
 
-    //a...追記する
-    if ($file_handler = fopen(FAILNAME, 'a')) {
+//     //a...追記する
+//     if ($file_handler = fopen(FAILNAME, 'a')) {
 
-        //書き込み日時を取得
-        $current_date = date("Y-m-d H:i:s", time());
-        //書き込むデータを作成
-        $date = "'" . $_POST['message'] . "','" . $current_date . "'\n";
+//         //書き込み日時を取得
+//         $current_date = date("Y-m-d H:i:s", time());
+//         //書き込むデータを作成
+//         $date = "'" . $_POST['message'] . "','" . $current_date . "'\n";
 
-        //書き込み
-        fwrite($file_handler, $date);
-        //ファイルを閉じる
-        fclose($file_handler);
-    }
-}
+//         //書き込み
+//         fwrite($file_handler, $date);
+//         //ファイルを閉じる
+//         fclose($file_handler);
+//     }
+// }
 
+BoardLogic::createBoard($boarderDate);
 
 
 // //ファイルからデータを取得する
