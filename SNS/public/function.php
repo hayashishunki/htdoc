@@ -14,7 +14,7 @@ function get_user($user_id) {
         return $stmt->fetch();
     } catch (\Exception $e) {
         error_log('エラー発生:'.$e->getMessage());
-        set_flash('error',ERR_MSG1);//フラッシュ変数は、一度だけ使用されることを意図したセッション変数
+        // set_flash('error',ERR_MSG1);//フラッシュ変数は、一度だけ使用されることを意図したセッション変数
     }
 }
 
@@ -37,7 +37,7 @@ function get_messages($user_id, $destination_user_id) {
         return $stmt->fetchALL();
     } catch (\Exception $e) {
         error_log('エラー発生:'.$e->getMessage());
-        set_flash('error', ERR_MSG1);
+        // set_flash('error', ERR_MSG1);
     }
 }
 ?>

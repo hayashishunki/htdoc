@@ -19,7 +19,7 @@ require_once '../function.php'
         <p><input type="text" name="email"></p>
         <p>お問い合わせ内容</p>
         <p><textarea name="contact"></textarea></p>
-        <input type="hidden" name="csrf_token" value="<?php echo h(setToken()); ?>">
+        <input type="hidden" name="csrf_token" value="<?= h(setToken()); ?>">
         <input type="submit" value="確認">
     </form>
     <a href="../public/mypage.php">マイページへ</a>

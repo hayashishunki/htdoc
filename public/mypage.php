@@ -28,14 +28,14 @@ $login_user = $_SESSION['login_user']; //ログインしているユーザーを
 
 <body>
     <h2>マイページ</h2>
-    <p>ログインユーザー : <?php echo h($login_user['name']); ?></p>
+    <p>ログインユーザー : <?= h($login_user['name']); ?></p>
     <!--h()はfunction.phpで定義、付ける理由はエスケープさせるため-->
-    <p>メールアドレス : <?php echo h($login_user['email']); ?></p>
+    <!-- <p>メールアドレス : <?= h($login_user['email']); ?></p> -->
     <form action="logout.php" method="POST">
         <input type="submit" name="logout" value="ログアウト">
     </form>
     <a href="../form_file/form.php">お問い合わせ</a>
-    <a href="../Bulletin board/index.php">投稿</a>
+    <a href="../Bulletin_board/index.php">投稿</a>
 </body>
 
 </html>

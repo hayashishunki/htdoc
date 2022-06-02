@@ -49,13 +49,13 @@ $contact = htmlspecialchars($_POST['contact'], ENT_QUOTES);
     <h1>確認画面</h1>
     <form action="form_end.php" method="POST">
     <p>email:</p>
-    <input type="text" name="email"value="<?php echo $email; ?>">
+    <input type="text" name="email"value="<?=  $email; ?>">
     <p>お問合せ内容:</p>
-    <input type="text" name="contact" value="<?php echo $contact; ?>">
+    <input type="text" name="contact" value="<?=  $contact; ?>">
 
     <!-- 入力画面から受け取ったデータを格納 -->
-    <input type="hidden" name="email" value="<?php echo $email; ?>">
-    <input type="hidden" name="contact" value="<?php echo $contact; ?>">
+    <input type="hidden" name="email" value="<?=  $email; ?>">
+    <input type="hidden" name="contact" value="<?=  $contact; ?>">
     <button type="submit" value="送信">OK!送信します。</button>
     </form>
 </body>
